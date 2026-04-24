@@ -14,7 +14,7 @@ data class Flashcard(
 )
 class QuizActivity : AppCompatActivity() {
 
-    // Expanded List of Questions
+//flashcard statements with questions that are either hack or myth
     private val flashcards = listOf(
         Flashcard("Putting a dry towel in the dryer with wet clothes makes them dry faster.", true, "Correct! The dry towel absorbs moisture quickly."),
         Flashcard("Drinking coffee helps you sober up faster after alcohol.", false, "Myth! It just makes you an 'alert' drunk."),
@@ -33,14 +33,14 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-        // UI Components
+        //variables
         val tvStatement = findViewById<TextView>(R.id.tvStatement)
         val tvFeedback = findViewById<TextView>(R.id.tvFeedback)
         val btnHack = findViewById<Button>(R.id.btnHack)
         val btnMyth = findViewById<Button>(R.id.btnMyth)
         val btnNext = findViewById<Button>(R.id.btnNext)
 
-        // Initialize first question
+
         displayQuestion(tvStatement, tvFeedback, btnNext)
 
         btnHack.setOnClickListener {
@@ -55,11 +55,13 @@ class QuizActivity : AppCompatActivity() {
             currentIndex++
             if (currentIndex < flashcards.size) {
                 displayQuestion(tvStatement, tvFeedback, btnNext)
+
                 // Re-enable buttons for the next question
                 btnHack.isEnabled = true
                 btnMyth.isEnabled = true
+
             } else {
-                // Move to Score Screen when finished
+                // when all questions are answered move to score screen
                 val intent = Intent(this, ScoreActivity::class.java)
                 intent.putExtra("SCORE", score)
                 intent.putExtra("TOTAL", flashcards.size)
@@ -90,7 +92,7 @@ class QuizActivity : AppCompatActivity() {
         tvF.visibility = View.VISIBLE
         btnN.visibility = View.VISIBLE
 
-        // Disable buttons so they can't change their answer
+        // after answer, button is disabled so user cant change the answer
         bH.isEnabled = false
         bM.isEnabled = false
     }

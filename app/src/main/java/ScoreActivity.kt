@@ -13,27 +13,27 @@ class ScoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
 
-        // 1. Link the UI elements
+        //variables
         val tvFinalScore = findViewById<TextView>(R.id.tvFinalScore)
         val tvFeedback = findViewById<TextView>(R.id.tvFeedback)
         val btnReview = findViewById<Button>(R.id.btnReview)
         val btnRestart = findViewById<Button>(R.id.btnRestart)
 
-        // 2. Get the data sent from QuizActivity
+
         val score = intent.getIntExtra("SCORE", 0)
         val total = intent.getIntExtra("TOTAL", 0)
 
-        // 3. Display the score
+
         tvFinalScore.text = "Final Score: $score / $total"
 
-        // 4. Set personalised feedback (Requirement 5.1)
+        //feedback depending on what score the user got
         if (score >= total/5 ) {
             tvFeedback.text = "Master Hacker! You're hard to fool."
         } else {
             tvFeedback.text = "Stay Safe Online! Keep practicing."
         }
 
-        // 5. Review Button Logic (Requirement 2.2)
+
         btnReview.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Quick Review")
@@ -47,7 +47,7 @@ class ScoreActivity : AppCompatActivity() {
             builder.show()
         }
 
-        // 6. Restart Logic
+        //this button will allow users to restart the quiz
         btnRestart.setOnClickListener {
             val intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
