@@ -28,9 +28,9 @@ class ScoreActivity : AppCompatActivity() {
 
         //feedback depending on what score the user got
         if (score >= total/5 ) {
-            tvFeedback.text = "Master Hacker! You're hard to fool."
+            tvFeedback.text = "Master Hacker! You're hard to fool.Good job lil bro"
         } else {
-            tvFeedback.text = "Stay Safe Online! Keep practicing."
+            tvFeedback.text = "Stay Safe Online! Please man"
         }
 
 
